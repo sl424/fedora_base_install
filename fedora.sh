@@ -18,6 +18,7 @@ brightlight alsa-utils \
 git firefox vim  \
 intel-media-driver libva-utils \
 xorg-x11-server-utils\
+unzip wget \
 "
 
 function cpdotfile(){
@@ -123,6 +124,15 @@ function configure() {
     #timedatectl set-ntp true
     ln -s -f $TIMEZONE /etc/localtime
 	echo $HOSTNAME > /etc/hostname
+}
+
+function add_fonts(){
+	pkgver=2.1.0
+	pkgdir=""
+	source="https://github.com/ryanoasis/nerd-fonts/releases/download/v$pkgver/Inconsolata.zip"
+	wget $source 
+	unzip Inconsolata.zip -d tmp; cd tmp
+	find . -iname "*.otf" -not -iname "*Windows Compatible.otf" -execdir install -Dm644 {} "$pkgdir/usr/share/fonts/OTF/{}"
 }
 
 function main() {
