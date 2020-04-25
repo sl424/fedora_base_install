@@ -19,7 +19,10 @@ brightlight alsa-utils
 git vim  
 xorg-x11-server-utils 
 unzip wget 
-terminus-fonts 
+terminus-fonts google-noto-emoji-color-fonts
+wofi
+playerctl
+pulseaudio pulseaudio-module-bluetooth bluez alsa-plugins-pulseaudio pulseaudio-utils
 "
 #intel-media-driver libva-utils 
 
@@ -40,6 +43,8 @@ SUBSYSTEM=="pci", ATTR{power/control}="auto" \n\
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{remove}="1" \n\
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{remove}="1" \n\
 ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{remove}="1" \n\
+## cpu freqe \n\
+KERNEL=="cpu[0-9]", SUBSYSTEM=="cpu", ATTR{cpufreq/scaling_governor}="schedutil" \n\
 "
 
 thinkpad_dir="/etc/modprobe.d/thinkpad.conf"
